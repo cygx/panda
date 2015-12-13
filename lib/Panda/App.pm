@@ -12,7 +12,7 @@ sub make-default-ecosystem(Str $prefix? is copy) is export {
     for grep(*.defined, flat $prefix, @custom-lib) -> $target {
         $prefix  = $target;
         $pandadir = "$target/panda".IO;
-        try mkpath $pandadir unless $pandadir ~~ :d;
+        try mkpath ~$pandadir unless $pandadir ~~ :d;
         last if $pandadir.w;
     }
     unless $pandadir.w {
